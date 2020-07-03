@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Poppins:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap');
+.v-application .primary {
+  background: #667db6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.number{
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+*:not(textarea):not(input){
+  user-select: none;
+}
+
+//.v-btn{
+//  letter-spacing: 0.3px!important;
+//  font-size: 14px !important;
+//}
+a{
+  text-decoration: none;
+}
+
+//.v-text-field input{
+//  line-height: 15px!important;
+//}
+
+.small-text{
+  font-size: 10px !important;
+  line-height: 1.1rem;
+}
+.details-text{
+  font-size: 13px !important;
+  line-height: 1.2rem;
+}
+.medium-text{
+  font-size: 14.5px!important;
+}
+.h-title{
+  font-size: 1.1rem!important;
+  font-weight: 600!important;
+}
+
+.soft-shadow{
+  box-shadow: 0 4px 25px 0 rgba(0,0,0,.1) !important;
+}
+.green-gradient{
+  background: #56ab2f;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.red-gradient{
+  background: #F00000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #DC281E, #F00000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.counter{
+  font-size: 1.55rem !important;
+}
