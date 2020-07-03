@@ -23,7 +23,7 @@
                           <!--                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[country.old_confirmed, country.new_confirmed]" color="primary"></v-sparkline>-->
                       </v-card>
                       <v-card key="confirmed_loading" class="soft-shadow pa-5" v-else>
-                          <v-skeleton-loader type="paragraph"></v-skeleton-loader>
+                          <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
                       </v-card>
                   </transition>
               </v-col>
