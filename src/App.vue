@@ -52,7 +52,7 @@ export default {
   mounted() {
     // Load Basic Required Data (Countries Index, Current Geolocation Country)
     this.loading = true
-    Country.api().get('http://localhost:8000/countries', {
+    Country.api().get('https://xahmedtaha.alwaysdata.net/countries', {
       dataTransformer: (response, index) => {
         return response.data.map((country) => {
           return {...country, order: index}

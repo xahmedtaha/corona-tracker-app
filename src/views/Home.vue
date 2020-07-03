@@ -2,8 +2,8 @@
   <div>
       <div class="primary white--text px-6 py-5 pb-15">
           <p class="medium-text mb-0 font-weight-medium">Covid-19 Tracker</p>
-          <v-autocomplete light hide-details :disabled="$wait.waiting('countries')" class="font-weight-bold title" dark v-model="countryId" item-text="name" item-value="id" :items="countries" placeholder="Choose a city to track"></v-autocomplete>
-          <p class="details-text grey--text text--lighten-3 font-weight-medium mt-2">Last updated <timeago :auto-update="60" v-if="country" :datetime="country.updated_at"></timeago></p>
+          <v-autocomplete light hide-details :disabled="$wait.waiting('countries')" class="font-weight-bold title" dark v-model="countryId" item-text="name" item-value="id" :items="countries" placeholder="Choose a country to track"></v-autocomplete>
+          <p v-if="country" class="details-text grey--text text--lighten-3 font-weight-medium mt-2">Last updated <timeago :auto-update="60" :datetime="country.updated_at"></timeago></p>
       </div>
       <v-container class="mt-n16">
           <v-row>
@@ -38,7 +38,7 @@
 <!--&lt;!&ndash;                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[(country.confirmed - country.new_confirmed) - (country.recovered + country.deaths), country.confirmed - (country.recovered + country.deaths)]" color="red"></v-sparkline>&ndash;&gt;-->
 <!--                  </v-card>-->
 <!--                  <v-card class="soft-shadow pa-5" v-else>-->
-<!--                      <v-skeleton-loader type="paragraph"></v-skeleton-loader>-->
+<!--                      <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>-->
 <!--                  </v-card>-->
 <!--              </v-col>-->
           </v-row>
@@ -60,7 +60,7 @@
                           <!--                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[country.old_confirmed, country.new_confirmed]" color="primary"></v-sparkline>-->
                       </v-card>
                       <v-card key="deaths_loading" class="soft-shadow pa-5" v-else>
-                          <v-skeleton-loader type="paragraph"></v-skeleton-loader>
+                          <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
                       </v-card>
                   </transition>
               </v-col>
@@ -79,7 +79,7 @@
                           <!--                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[country.old_confirmed, country.new_confirmed]" color="primary"></v-sparkline>-->
                       </v-card>
                       <v-card key="recovered_loading" class="soft-shadow pa-5" v-else>
-                          <v-skeleton-loader type="paragraph"></v-skeleton-loader>
+                          <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
                       </v-card>
                   </transition>
               </v-col>
@@ -109,7 +109,8 @@
                   decimal: '.',
                   prefix: '',
                   suffix: ''
-              }
+              },
+			  boilerplate: false,
           }
       },
       mounted(){
@@ -120,13 +121,18 @@
       },
         watch: {
           countryId(id){
-              this.loading = true
-              Country.api().get('http://localhost:8000/countries/'+id).then(() => {
-                  this.loading = false
-              }).catch(() => {
-                  this.loading = false
-                  this.$store.commit('showSnackbar', {msg: 'Error. Couldn\'t Load Data', color: 'pink'})
-              })
+              if(id){
+				  this.loading = true
+				  Country.api().get('https://xahmedtaha.alwaysdata.net/countries/'+id).then(() => {
+					  this.loading = false
+				  }).catch(() => {
+					  this.loading = false
+					  this.$store.commit('showSnackbar', {msg: 'Error. Couldn\'t Load Data', color: 'pink'})
+				  })
+			  }else{
+				this.loading = true
+				this.boilerplate = true
+			  }
           }
         },
       computed: {
