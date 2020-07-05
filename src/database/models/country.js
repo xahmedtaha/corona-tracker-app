@@ -14,6 +14,7 @@ class Country extends Model {
             new_deaths: this.attr(null),
             created_at: this.attr(null),
             updated_at: this.attr(null),
+            notify: this.attr(false),
 
             order: this.attr(0), // Used For Retrieving By Insertion Order
         }

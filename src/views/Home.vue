@@ -11,55 +11,57 @@
                   <transition name="fade-transition" mode="out-in">
                       <v-card key="confirmed" v-if="!loading" ripple class="soft-shadow" style="position: relative">
                           <div class="d-flex flex-row justify-space-between align-center">
-                              <v-card-subtitle class="grey--text pb-0" style="font-size: 12.5px;">CONFIRMED</v-card-subtitle>
-                              <div v-if="country.new_confirmed" class="mt-3 mr-4 blue details-text white--text rounded px-2 text-center d-flex flex-row justify-space-between align-center" style="">
-                                  <span class="mr-1">{{country.new_confirmed}}</span>
-                                  <v-icon color="white" small>mdi-arrow-up</v-icon>
+                              <v-card-subtitle class="muted--text pb-0" style="font-size: 12.5px;">CONFIRMED</v-card-subtitle>
+                              <div v-if="country.new_confirmed" class="mt-3 mr-4 blue white--text rounded px-2 text-center d-flex flex-row justify-space-between align-center" style="">
+                                  <span class="mr-1 number" style="font-size: 11.5px !important;">{{country.new_confirmed}}</span>
+                                  <v-icon color="white" size="12">mdi-arrow-up</v-icon>
                               </div>
                           </div>
                           <v-card-title class="pt-0 blue--text font-weight-bold number counter">
-                              <ICountUp :delay="delay" :endVal="country.confirmed" :options="options"></ICountUp>
+                              <ICountUp v-if="country.confirmed !== null" :delay="delay" :endVal="country.confirmed" :options="options"></ICountUp>
+                              <span v-else>N/A</span>
                           </v-card-title>
-                          <!--                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[country.old_confirmed, country.new_confirmed]" color="primary"></v-sparkline>-->
                       </v-card>
                       <v-card key="confirmed_loading" class="soft-shadow pa-5" v-else>
                           <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
                       </v-card>
                   </transition>
               </v-col>
-<!--              <v-col cols="6">-->
-<!--                  <v-card v-if="!loading" ripple class="soft-shadow" style="position: relative">-->
-<!--                      <div class="details-text red white&#45;&#45;text elevation-5 rounded px-2 text-center d-flex flex-row justify-space-between align-center" style="position: absolute; top: -11px; right: 8px;z-index: 5">-->
-<!--                          <span class="mr-1">{{Math.abs((country.confirmed - (country.recovered + country.deaths)) - ((country.confirmed - country.new_confirmed) - ((country.recovered - country.new_recovered) + (country.deaths - country.new_deaths))))}}</span>-->
-<!--                          <v-icon color="white" small>{{ (country.confirmed - (country.recovered + country.deaths)) > ((country.confirmed - country.new_confirmed) - ((country.recovered - country.new_recovered) + (country.deaths - country.new_deaths))) ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>-->
-<!--                      </div>-->
-<!--                      <v-card-subtitle class="grey&#45;&#45;text pb-0" style="font-size: 12.5px;">ACTIVE</v-card-subtitle>-->
-<!--                      <v-card-title class="pt-0 red&#45;&#45;text font-weight-bold number">{{country.confirmed - (country.recovered + country.deaths)}}</v-card-title>-->
-<!--&lt;!&ndash;                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[(country.confirmed - country.new_confirmed) - (country.recovered + country.deaths), country.confirmed - (country.recovered + country.deaths)]" color="red"></v-sparkline>&ndash;&gt;-->
-<!--                  </v-card>-->
-<!--                  <v-card class="soft-shadow pa-5" v-else>-->
-<!--                      <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>-->
-<!--                  </v-card>-->
-<!--              </v-col>-->
           </v-row>
 
           <v-row>
-              <v-col cols="12">
+              <v-col>
                   <transition name="fade-transition" mode="out-in">
                       <v-card key="deaths" v-if="!loading" ripple class="soft-shadow" style="position: relative">
                           <div class="d-flex flex-row justify-space-between align-center">
-                              <v-card-subtitle class="grey--text pb-0" style="font-size: 12.5px;">DEATHS</v-card-subtitle>
-                              <div v-if="country.new_deaths" class="mt-3 mr-4 red details-text white--text rounded px-2 text-center d-flex flex-row justify-space-between align-center" style="">
-                                  <span class="mr-1">{{country.new_deaths}}</span>
-                                  <v-icon color="white" small>mdi-arrow-up</v-icon>
+                              <v-card-subtitle class="muted--text pb-0" style="font-size: 12.5px;">DEATHS</v-card-subtitle>
+                              <div v-if="country.new_deaths" class="mt-3 mr-4 primary white--text rounded px-2 text-center d-flex flex-row justify-space-between align-center" style="">
+                                  <span class="mr-1 number" style="font-size: 11.5px !important;">{{country.new_deaths}}</span>
+                                  <v-icon color="white" size="12">mdi-arrow-up</v-icon>
                               </div>
                           </div>
-                          <v-card-title class="pt-0 red--text font-weight-bold number counter">
-                              <ICountUp :delay="delay" :endVal="country.deaths" :options="options"></ICountUp>
+                          <v-card-title class="pt-0 primary--text font-weight-bold number counter">
+                              <ICountUp v-if="country.deaths !== null" :delay="delay" :endVal="country.deaths" :options="options"></ICountUp>
+                              <span v-else>N/A</span>
                           </v-card-title>
-                          <!--                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[country.old_confirmed, country.new_confirmed]" color="primary"></v-sparkline>-->
                       </v-card>
                       <v-card key="deaths_loading" class="soft-shadow pa-5" v-else>
+                          <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
+                      </v-card>
+                  </transition>
+              </v-col>
+              <v-col>
+                  <transition name="fade-transition" mode="out-in">
+                      <v-card key="recovered" v-if="!loading" ripple class="soft-shadow" style="position: relative">
+                          <div class="d-flex flex-row justify-space-between align-center">
+                              <v-card-subtitle class="muted--text pb-0" style="font-size: 12.5px;">RECOVERED</v-card-subtitle>
+                          </div>
+                          <v-card-title class="pt-0 green--text font-weight-bold number counter">
+                              <ICountUp v-if="country.recovered !== null" :delay="delay" :endVal="country.recovered" :options="options"></ICountUp>
+                              <span v-else>N/A</span>
+                          </v-card-title>
+                      </v-card>
+                      <v-card key="recovered_loading" class="soft-shadow pa-5" v-else>
                           <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
                       </v-card>
                   </transition>
@@ -67,18 +69,22 @@
           </v-row>
 
           <v-row>
-              <v-col cols="12">
+              <v-col cols="12" v-if="$store.state.isCordova">
                   <transition name="fade-transition" mode="out-in">
-                      <v-card key="recovered" v-if="!loading" ripple class="soft-shadow" style="position: relative">
+                      <v-alert v-if="!loading"
+                               v-ripple
+                               class="soft-shadow"
+                               color="primary"
+                               text
+                      >
                           <div class="d-flex flex-row justify-space-between align-center">
-                              <v-card-subtitle class="grey--text pb-0" style="font-size: 12.5px;">RECOVERED</v-card-subtitle>
+                              <div class="medium-text mr-5">Receive Notifications About Cases Updates</div>
+                              <div>
+                                  <v-switch color="primary" :disabled="notifyLoading" :input-value="country.notify" @change="notify" inset :loading="notifyLoading"></v-switch>
+                              </div>
                           </div>
-                          <v-card-title class="pt-0 green--text font-weight-bold number counter">
-                              <ICountUp :delay="delay" :endVal="country.recovered" :options="options"></ICountUp>
-                          </v-card-title>
-                          <!--                      <v-sparkline :padding="0" fill :smooth="10" auto-draw :value="[country.old_confirmed, country.new_confirmed]" color="primary"></v-sparkline>-->
-                      </v-card>
-                      <v-card key="recovered_loading" class="soft-shadow pa-5" v-else>
+                      </v-alert>
+                      <v-card v-else class="soft-shadow pa-5">
                           <v-skeleton-loader :boilerplate="boilerplate" type="paragraph"></v-skeleton-loader>
                       </v-card>
                   </transition>
@@ -92,6 +98,7 @@
 <script>
     import ICountUp from 'vue-countup-v2';
     import Country from '../database/models/country'
+    import axios from 'axios'
 
     export default {
       name: 'Home',
@@ -111,19 +118,42 @@
                   suffix: ''
               },
 			  boilerplate: false,
+              notifyLoading: false,
           }
       },
       mounted(){
-
+        if(this.countryId){
+            this.loading = false
+            this.boilerplate = false
+        }
       },
       methods: {
-
+          notify(notify){
+              this.notifyLoading = true
+              axios.post(process.env.VUE_APP_API_URL + '/subscribe/' + this.country.id, {
+                  device_token: this.$store.state.fcm_token,
+                  device: device.platform,
+              }).then(response => {
+                  this.notifyLoading = false
+                  Country.update({
+                      where: this.country.id,
+                      data: {
+                          notify: response.data.subscribed
+                      }
+                  })
+              }).catch(error => {
+                  console.log(error)
+                  this.$store.commit('showSnackbar', {msg: 'Error. Couldn\'t Subscribe To Notifications', color: 'pink'})
+                  this.notifyLoading = false
+              });
+          }
       },
         watch: {
           countryId(id){
               if(id){
+                  this.boilerplate = false
 				  this.loading = true
-				  Country.api().get('https://xahmedtaha.alwaysdata.net/countries/'+id).then(() => {
+				  Country.api().get(process.env.VUE_APP_API_URL+'/countries/'+id, {params: {'device_token': this.$store.state.fcm_token}}).then(() => {
 					  this.loading = false
 				  }).catch(() => {
 					  this.loading = false
@@ -150,7 +180,8 @@
                 this.$store.commit('setCountryId', value)
               }
           }
-      }
+      },
+
     }
 </script>
 <style>

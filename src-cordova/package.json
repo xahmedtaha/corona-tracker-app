@@ -13,9 +13,13 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "cordova-android": "~8.1.0",
+    "cordova-android": "^8.1.0",
     "cordova-browser": "~6.0.0",
-    "cordova-ios": "~5.1.1",
+    "cordova-plugin-androidx": "^2.0.0",
+    "cordova-plugin-androidx-adapter": "^1.1.1",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-enable-multidex": "^0.2.0",
+    "cordova-plugin-firebasex": "^10.1.0-cli",
     "cordova-plugin-statusbar": "^2.4.3"
   },
   "devDependencies": {
@@ -24,12 +28,20 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-firebasex": {
+        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true"
+      },
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-enable-multidex": {}
     },
     "platforms": [
-      "android",
-      "ios",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

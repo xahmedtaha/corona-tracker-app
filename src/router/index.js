@@ -11,12 +11,12 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
-    path: '/country/:id',
-    name: 'Country',
+    path: '/virus',
+    name: 'Virus',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "country" */ '../views/Country.vue')
+    component: () => import(/* webpackChunkName: "country" */ '../views/Virus.vue')
   },
   {
     path: '/about',

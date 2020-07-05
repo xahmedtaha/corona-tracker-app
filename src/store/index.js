@@ -13,6 +13,8 @@ export default new Vuex.Store({
     snackbarMsg: '',
     snackbarColor: 'pink',
     countryId: null,
+    fcm_token: null,
+    isCordova: !!window.cordova
   },
   mutations: {
     showSnackbar(state, {msg, color}){
@@ -23,39 +25,15 @@ export default new Vuex.Store({
     hideSnackbar(state){
       state.snackbar = false;
     },
-    // setCountryData(state, data){
-    //   state.currentCountry = data;
-    // },
     setCountryId(state, id){
       state.countryId = id
+    },
+    setFCMToken(state, token){
+      state.fcm_token = token
     }
-    // setCountriesIndex(state, data){
-    //   state.countriesIndex = data
-    // }
   },
   actions: {
-    // getCountryData({ commit }, {id}){
-    //   return new Promise((resolve, reject) => {
-    //     axios.get('http://localhost:8000/countries/'+id).then(response => {
-    //       commit('setCountryData', response.data)
-    //       resolve()
-    //     }).catch(error => {
-    //       commit('showSnackbar', {msg: "Error. Couldn't Load Data", color: 'pink'})
-    //       reject()
-    //     })
-    //   })
-    // },
-    // loadCountriesIndex({ commit }){
-    //   return new Promise((resolve, reject) => {
-    //     axios.get('http://localhost:8000/countries').then(response => {
-    //       commit('setCountriesIndex', response.data)
-    //       resolve()
-    //     }).catch(error => {
-    //       commit('showSnackbar', {msg: "Error. Couldn't Load Data", color: 'pink'})
-    //       reject()
-    //     })
-    //   })
-    // }
+
   },
   modules: {
   },

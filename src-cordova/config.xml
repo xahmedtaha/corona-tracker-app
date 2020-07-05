@@ -18,9 +18,14 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='MainActivity']" mode="merge">
-        <activity android:windowSoftInputMode="adjustPan" />
-    </edit-config>
+    <platform name="android">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+        <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='MainActivity']" mode="merge">
+            <activity android:windowSoftInputMode="adjustPan" />
+        </edit-config>
+    </platform>
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -28,7 +33,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <prefrence name="android-minSdkVersion" value="22" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <preference name="StatusBarBackgroundColor" value="#405486" />
+    <preference name="StatusBarBackgroundColor" value="#fc3a2f" />
 </widget>

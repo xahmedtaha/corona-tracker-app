@@ -3,15 +3,17 @@
     <div v-if="error" style="width: 100vw; height: 100vh; z-index: 1000;position: absolute" class="white d-flex flex-column justify-center align-center">
       <h1>Error!</h1>
     </div>
-    <v-main>
-      <router-view />
+    <v-main class="background">
+      <transition name="page" mode="out-in">
+        <router-view />
+      </transition>
     </v-main>
     <v-bottom-navigation grow color="primary" app>
-      <v-btn active-class="border-top" class="transition" :to="{name: 'Home'}" height="100%">
+      <v-btn active-class="border-top" class="transition" :to="{name: 'Home'}" height="100%" exact>
         <v-icon>mdi-earth</v-icon>
       </v-btn>
 
-      <v-btn active-class="border-top" class="transition" height="100%">
+      <v-btn active-class="border-top" class="transition" :to="{name: 'Virus'}" height="100%" exact>
         <v-icon>mdi-virus</v-icon>
       </v-btn>
 
@@ -52,7 +54,7 @@ export default {
   mounted() {
     // Load Basic Required Data (Countries Index, Current Geolocation Country)
     this.loading = true
-    Country.api().get('https://xahmedtaha.alwaysdata.net/countries', {
+    Country.api().get(process.env.VUE_APP_API_URL+'/countries', {
       dataTransformer: (response, index) => {
         return response.data.map((country) => {
           return {...country, order: index}
@@ -66,7 +68,12 @@ export default {
       this.error = true;
       this.loading = false
     });
-
+    document.addEventListener('deviceready', () => {
+      window.FirebasePlugin.getToken((token) => {
+        alert(token)
+        this.$store.commit('setFCMToken', token);
+      });
+    }, false)
   },
 
   data: () => ({
@@ -104,7 +111,7 @@ export default {
     max-width: 50px;
     margin-right: auto;
     margin-left: auto;
-    background: #667db6;
+    background: #fd5a51;
     height: 2px;
     border-bottom-left-radius: 5rem !important;
     border-bottom-right-radius: 5rem !important;
