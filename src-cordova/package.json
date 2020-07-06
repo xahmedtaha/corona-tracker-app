@@ -18,6 +18,7 @@
     "cordova-plugin-androidx": "^2.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.1",
     "cordova-plugin-appcenter-analytics": "^0.5.1",
+    "cordova-plugin-appcenter-crashes": "^0.5.1",
     "cordova-plugin-appcenter-shared": "^0.5.1",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-enable-multidex": "^0.2.0",
@@ -40,7 +41,8 @@
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-enable-multidex": {},
-      "cordova-plugin-appcenter-analytics": {}
+      "cordova-plugin-appcenter-analytics": {},
+      "cordova-plugin-appcenter-crashes": {}
     },
     "platforms": [
       "browser",
