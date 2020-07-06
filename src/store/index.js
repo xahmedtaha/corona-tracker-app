@@ -14,7 +14,9 @@ export default new Vuex.Store({
     snackbarColor: 'pink',
     countryId: null,
     fcm_token: null,
-    isCordova: !!window.cordova
+    isCordova: !!window.cordova,
+    notification: false,
+    notificationText: '',
   },
   mutations: {
     showSnackbar(state, {msg, color}){
@@ -30,6 +32,14 @@ export default new Vuex.Store({
     },
     setFCMToken(state, token){
       state.fcm_token = token
+    },
+    showNotification(state, {msg}){
+      state.notification = true
+      state.notificationText = msg
+    },
+    hideNotification(state){
+      state.notification = false
+      state.notificationText = ''
     }
   },
   actions: {

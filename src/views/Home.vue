@@ -69,8 +69,8 @@
           </v-row>
 
           <v-row>
-              <v-col cols="12" v-if="$store.state.isCordova">
-                  <transition name="fade-transition" mode="out-in">
+              <v-col cols="12" >
+                  <transition name="fade-transition" mode="out-in" v-if="fcm_token">
                       <v-alert v-if="!loading"
                                v-ripple
                                class="soft-shadow"
@@ -169,6 +169,9 @@
         countries(){
             return Country.query().orderBy('order').get()
         },
+          fcm_token(){
+            return this.$store.state.fcm_token
+          },
           country(){
             return Country.find(this.countryId)
           },
